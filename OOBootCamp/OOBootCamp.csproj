@@ -46,6 +46,7 @@
     <Compile Include="Length.cs" />
     <Compile Include="LengthFact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LengthUnit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

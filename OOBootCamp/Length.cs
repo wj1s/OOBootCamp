@@ -2,17 +2,19 @@
 {
     public class Length
     {
-        public int Value { get; set; }
-
-        public Length(int value, Unit unit)
+        public Length(int value, LengthUnit lengthUnit)
         {
             Value = value;
+            Unit = lengthUnit;
         }
+
+        private int Value { get; set; }
+        private LengthUnit Unit { get; set; }
 
         public override bool Equals(object obj)
         {
-            var length = (Length)obj;
-            return Value == length.Value;
+            var target = (Length) obj;
+            return Value*(int) Unit == target.Value*(int) target.Unit;
         }
     }
 }
