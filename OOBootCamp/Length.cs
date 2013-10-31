@@ -9,12 +9,13 @@
         }
 
         private int Value { get; set; }
+
         private LengthUnit Unit { get; set; }
 
         public override bool Equals(object obj)
         {
             var target = (Length) obj;
-            return Value*(int) Unit == target.Value*(int) target.Unit;
+            return Value * (Unit.Factor / target.Unit.Factor) == target.Value;
         }
     }
 }

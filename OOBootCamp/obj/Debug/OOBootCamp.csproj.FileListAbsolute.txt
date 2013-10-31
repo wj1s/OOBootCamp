@@ -1,7 +1,0 @@
-C:\workspace\OOBootCamp\OOBootCamp\bin\Debug\OOBootCamp.dll
-C:\workspace\OOBootCamp\OOBootCamp\bin\Debug\OOBootCamp.pdb
-C:\workspace\OOBootCamp\OOBootCamp\bin\Debug\xunit.dll
-C:\workspace\OOBootCamp\OOBootCamp\bin\Debug\xunit.xml
-C:\workspace\OOBootCamp\OOBootCamp\obj\Debug\ResolveAssemblyReference.cache
-C:\workspace\OOBootCamp\OOBootCamp\obj\Debug\OOBootCamp.dll
-C:\workspace\OOBootCamp\OOBootCamp\obj\Debug\OOBootCamp.pdb

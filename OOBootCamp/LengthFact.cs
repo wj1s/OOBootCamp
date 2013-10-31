@@ -21,6 +21,7 @@ namespace OOBootCamp
             Assert.Equal(new Length(1, LengthUnit.CM), new Length(10, LengthUnit.MM));
             Assert.Equal(new Length(10, LengthUnit.MM), new Length(1, LengthUnit.CM));
             Assert.Equal(new Length(1000, LengthUnit.MM), new Length(1, LengthUnit.M));
+            Assert.Equal(new Length(100, LengthUnit.CM), new Length(1, LengthUnit.M));
         }
     }
 }
