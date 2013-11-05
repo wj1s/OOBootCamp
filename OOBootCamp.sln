@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOBootCamp", "OOBootCamp\OOBootCamp.csproj", "{6DB8C076-283A-4FC9-B9A9-8C09A84147EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lotus", "Lotus\Lotus.csproj", "{B688969F-E4D1-496F-BAA2-1EDCCE466A9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{6DB8C076-283A-4FC9-B9A9-8C09A84147EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DB8C076-283A-4FC9-B9A9-8C09A84147EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DB8C076-283A-4FC9-B9A9-8C09A84147EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B688969F-E4D1-496F-BAA2-1EDCCE466A9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B688969F-E4D1-496F-BAA2-1EDCCE466A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B688969F-E4D1-496F-BAA2-1EDCCE466A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B688969F-E4D1-496F-BAA2-1EDCCE466A9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
