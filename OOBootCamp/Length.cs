@@ -15,7 +15,7 @@
         public override bool Equals(object obj)
         {
             var target = (Length) obj;
-            return Value * (Unit.Factor / target.Unit.Factor) == target.Value;
+            return Unit.ConverTo(target.Unit, Value) == target.Value;
         }
     }
 }

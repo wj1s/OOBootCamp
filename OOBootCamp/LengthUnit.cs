@@ -12,5 +12,10 @@
         }
 
         public double Factor { get; private set; }
+
+        public double ConverTo(LengthUnit targetUnit, int value)
+        {
+            return value * (Factor / targetUnit.Factor);
+        }
     }
 }
