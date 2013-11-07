@@ -1,11 +1,11 @@
-﻿namespace Lotus
+﻿using System.Collections.Generic;
+
+namespace Lotus
 {
     public class Locker
     {
-        private int capacity;
-        private int count;
-        private Bag bag;
-        private Ticket ticket;
+        private readonly int capacity;
+        private readonly IDictionary<Ticket, Bag> maps = new Dictionary<Ticket, Bag>();
 
         public Locker(int capacity)
         {
@@ -14,17 +14,21 @@
 
         public Ticket Store(Bag bag)
         {
-            if (count >= capacity) throw new LockerFullException();
-            
-            count++;
-            this.bag = bag;
-            ticket = new Ticket();
+            if (maps.Count >= capacity) throw new LockerFullException();
+            var ticket = new Ticket();
+            maps.Add(ticket, bag);
             return ticket;
         }
 
         public Bag Pick(Ticket ticket)
         {
-            return ticket.Equals(this.ticket) ? bag : null;
+            if (ticket == null || !maps.ContainsKey(ticket))
+            {
+                return null;
+            }
+            Bag pick = maps[ticket];
+            maps.Remove(ticket);
+            return pick;
         }
     }
 }
