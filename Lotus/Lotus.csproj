@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bag.cs" />
+    <Compile Include="Robot.cs" />
+    <Compile Include="RobotFacts.cs" />
     <Compile Include="Locker.cs" />
     <Compile Include="LockerFacts.cs" />
     <Compile Include="LockerFullException.cs" />

@@ -10,13 +10,17 @@ namespace Lotus
         public Locker(int capacity)
         {
             this.capacity = capacity;
+            CanStore = true;
         }
+
+        public bool CanStore { get; set; }
 
         public Ticket Store(Bag bag)
         {
-            if (maps.Count >= capacity) throw new LockerFullException();
+            if (!CanStore) throw new LockerFullException();
             var ticket = new Ticket();
             maps.Add(ticket, bag);
+            if (maps.Count == capacity) CanStore = false;
             return ticket;
         }
 
@@ -26,7 +30,7 @@ namespace Lotus
             {
                 return null;
             }
-            Bag pick = maps[ticket];
+            var pick = maps[ticket];
             maps.Remove(ticket);
             return pick;
         }
