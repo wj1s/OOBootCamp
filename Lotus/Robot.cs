@@ -4,22 +4,25 @@ namespace Lotus
 {
     public class Robot
     {
-        private readonly Locker[] lockers;
+        protected readonly Locker[] Lockers;
 
         public Robot(Locker[] lockers)
         {
-            this.lockers = lockers;
+            Lockers = lockers;
         }
 
         public Ticket Store(Bag bag)
         {
-            if (lockers.All(locker => !locker.CanStore)) throw new LockerFullException();
-            return lockers.First(locker => locker.CanStore).Store(bag);
+            if(Lockers == null || Lockers.Length ==0)
+                throw new ZeroLockerException();
+            if (Lockers.All(locker => !locker.CanStore)) throw new LockerFullException();
+            
+            return Lockers.First(locker => locker.CanStore).Store(bag);
         }
 
         public Bag Pick(Ticket ticket)
         {
-            return lockers.Select(locker => locker.Pick(ticket)).FirstOrDefault(bag => bag != null);
+            return Lockers.Select(locker => locker.Pick(ticket)).FirstOrDefault(bag => bag != null);
         }
     }
 }

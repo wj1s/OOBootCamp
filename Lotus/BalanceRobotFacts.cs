@@ -2,12 +2,12 @@
 
 namespace Lotus
 {
-    public class RobotFacts
+    public class BalanceRobotFacts
     {
         [Fact]
         public void should_manage_lockers()
         {
-            var robot = new Robot(new[] {new Locker(1), new Locker(1)});
+            var robot = new BalanceRobot(new[] {new Locker(1), new Locker(1)});
             Assert.NotNull(robot);
         }
 
@@ -16,7 +16,7 @@ namespace Lotus
         {
             var locker = new Locker(1);
             var bag = new Bag();
-            Ticket ticket = new Robot(new[] {locker}).Store(bag);
+            Ticket ticket = new BalanceRobot(new[] {locker}).Store(bag);
             Assert.Same(bag, locker.Pick(ticket));
         }
 
@@ -24,7 +24,7 @@ namespace Lotus
         public void should_store_multi_bag_in_one_locker()
         {
             var locker = new Locker(2);
-            var robot = new Robot(new[] {locker});
+            var robot = new BalanceRobot(new[] {locker});
 
             var bag1 = new Bag();
             Ticket ticket1 = robot.Store(bag1);
@@ -40,7 +40,7 @@ namespace Lotus
         {
             var locker1 = new Locker(1);
             var locker2 = new Locker(1);
-            var robot = new Robot(new[] {locker1, locker2});
+            var robot = new BalanceRobot(new[] {locker1, locker2});
 
             var bag1 = new Bag();
             Ticket ticket1 = robot.Store(bag1);
@@ -56,7 +56,7 @@ namespace Lotus
         {
             var locker1 = new Locker(1);
             var locker2 = new Locker(1);
-            var robot = new Robot(new[] {locker1, locker2});
+            var robot = new BalanceRobot(new[] {locker1, locker2});
 
             robot.Store(new Bag());
             robot.Store(new Bag());
@@ -66,14 +66,14 @@ namespace Lotus
         [Fact]
         public void should_throw_exception_when_all_locker_full_when_no_cell()
         {
-            Assert.Throws<LockerFullException>(() => new Robot(new[] {new Locker(0), new Locker(0)}).Store(new Bag()));
+            Assert.Throws<LockerFullException>(() => new BalanceRobot(new[] { new Locker(0), new Locker(0) }).Store(new Bag()));
         }
 
         [Fact]
         public void should_throw_exception_when_robot_with_no_cell_when_store_bag()
         {
-            Assert.Throws<ZeroLockerException>(() => new Robot(null).Store(new Bag()));
-            Assert.Throws<ZeroLockerException>(() => new Robot(new Locker[0]).Store(new Bag()));
+            Assert.Throws<ZeroLockerException>(() => new BalanceRobot(null).Store(new Bag()));
+            Assert.Throws<ZeroLockerException>(() => new BalanceRobot(new Locker[0]).Store(new Bag()));
         }
 
         [Fact]
@@ -81,7 +81,7 @@ namespace Lotus
         {
             var locker1 = new Locker(1);
             var locker2 = new Locker(1);
-            var robot = new Robot(new[] {locker1, locker2});
+            var robot = new BalanceRobot(new[] {locker1, locker2});
 
             var bag1 = new Bag();
             Ticket ticket1 = robot.Store(bag1);
@@ -97,7 +97,7 @@ namespace Lotus
         {
             var locker1 = new Locker(1);
             var locker2 = new Locker(1);
-            var robot = new Robot(new[] {locker1, locker2});
+            var robot = new BalanceRobot(new[] {locker1, locker2});
 
             Ticket ticket = robot.Store(new Bag());
 
@@ -110,12 +110,29 @@ namespace Lotus
         {
             var locker1 = new Locker(1);
             var locker2 = new Locker(1);
-            var robot = new Robot(new[] {locker1, locker2});
+            var robot = new BalanceRobot(new[] {locker1, locker2});
 
             robot.Store(new Bag());
             robot.Store(new Bag());
 
             Assert.Null(robot.Pick(new Ticket()));
+        }
+
+        [Fact]
+        public void should_store_bag_balance()
+        {
+            var locker1 = new Locker(2);
+            var locker2 = new Locker(5);
+            locker1.Store(new Bag());
+
+            locker2.Store(new Bag());
+            locker2.Store(new Bag());
+            locker2.Store(new Bag());
+            
+            var balanceRobot = new BalanceRobot(new[] {locker2,locker1});
+            var bag = new Bag();
+            var ticket = balanceRobot.Store(bag);
+            Assert.Same(bag, locker1.Pick(ticket));
         }
     }
 }
