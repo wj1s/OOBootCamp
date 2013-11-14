@@ -50,8 +50,12 @@
     <Compile Include="LockerFinders\ILockerFinder.cs" />
     <Compile Include="LockerFinders\SmartLockerFinder.cs" />
     <Compile Include="Model\Bag.cs" />
+    <Compile Include="Model\BalanceLockerFinder.cs" />
+    <Compile Include="Model\FIFOLockerFinder.cs" />
+    <Compile Include="Model\ILockerFinder.cs" />
     <Compile Include="Model\Locker.cs" />
     <Compile Include="Model\Robot.cs" />
+    <Compile Include="Model\SmartLockerFinder.cs" />
     <Compile Include="Model\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\BalanceRobotFacts.cs" />

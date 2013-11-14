@@ -20,6 +20,7 @@ namespace Lotus.Tests
             var locker = new Locker(1);
             var bag = new Bag();
             Ticket ticket = Robot.CreateBalanceRobot(new[] {locker}).Store(bag);
+
             Assert.Same(bag, locker.Pick(ticket));
         }
 
@@ -28,6 +29,7 @@ namespace Lotus.Tests
         {
             var locker = new Locker(2);
             var robot = Robot.CreateBalanceRobot(new[] {locker});
+
 
             var bag1 = new Bag();
             Ticket ticket1 = robot.Store(bag1);
@@ -44,6 +46,7 @@ namespace Lotus.Tests
             var locker1 = new Locker(1);
             var locker2 = new Locker(1);
             var robot = Robot.CreateBalanceRobot(new[] {locker1, locker2});
+
 
             var bag1 = new Bag();
             Ticket ticket1 = robot.Store(bag1);

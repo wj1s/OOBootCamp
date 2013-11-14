@@ -7,6 +7,7 @@ namespace Lotus.Model
     public class Robot
     {
         protected readonly Locker[] Lockers;
+        private readonly ILockerFinder fifoLockerFinder;
 
         private readonly ILockerFinder lockerFinder;
 
