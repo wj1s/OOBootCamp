@@ -1,6 +1,8 @@
-﻿using Xunit;
+using Lotus.Exceptions;
+using Lotus.Model;
+using Xunit;
 
-namespace Lotus
+namespace Lotus.Tests
 {
     public class LockerFacts
     {

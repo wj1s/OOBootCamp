@@ -1,6 +1,7 @@
-﻿using System.Linq;
+using System.Linq;
+using Lotus.Exceptions;
 
-namespace Lotus
+namespace Lotus.Model
 {
     public class Robot
     {

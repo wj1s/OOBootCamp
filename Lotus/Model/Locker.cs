@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using Lotus.Exceptions;
 
-namespace Lotus
+namespace Lotus.Model
 {
     public class Locker
     {

@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace Lotus
+namespace Lotus.Exceptions
 {
     public class LockerFullException : Exception
     {
