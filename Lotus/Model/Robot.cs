@@ -16,9 +16,9 @@ namespace Lotus.Model
         {
             if(Lockers == null || Lockers.Length ==0)
                 throw new ZeroLockerException();
-            if (Lockers.All(locker => !locker.CanStore)) throw new LockerFullException();
+            if (Lockers.All(locker => !locker.GetCanStore())) throw new LockerFullException();
             
-            return Lockers.First(locker => locker.CanStore).Store(bag);
+            return Lockers.First(locker => locker.GetCanStore()).Store(bag);
         }
 
         public Bag Pick(Ticket ticket)

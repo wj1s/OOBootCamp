@@ -15,7 +15,7 @@ namespace Lotus.Model
             if (Lockers == null || Lockers.Length == 0)
                 throw new ZeroLockerException();
 
-            return Lockers.OrderByDescending(l => l.Balance).First().Store(bag);
+            return Lockers.OrderByDescending(l => l.GetBalance()).First().Store(bag);
         }
     }
 }

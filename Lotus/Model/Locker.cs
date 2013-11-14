@@ -13,27 +13,24 @@ namespace Lotus.Model
             this.capacity = capacity;
         }
 
-        public bool CanStore
+        public bool GetCanStore()
         {
-            get { return EmptyCount > 0; }
+            return GetEmptyCount() > 0;
         }
 
-        public int EmptyCount
+        public int GetEmptyCount()
         {
-            get { return capacity - maps.Count; }
+            return capacity - maps.Count;
         }
 
-        public double Balance
+        public double GetBalance()
         {
-            get
-            {
-                return (double)EmptyCount/capacity;
-            }
+            return (double) GetEmptyCount()/capacity;
         }
 
         public Ticket Store(Bag bag)
         {
-            if (!CanStore) throw new LockerFullException();
+            if (!GetCanStore()) throw new LockerFullException();
             var ticket = new Ticket();
             maps.Add(ticket, bag);
             return ticket;
