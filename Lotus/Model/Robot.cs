@@ -7,7 +7,7 @@ namespace Lotus.Model
     public class Robot
     {
         protected readonly Locker[] Lockers;
-        private readonly ILockerFinder fifoLockerFinder;
+        private readonly ILockerFinder lockerFinder;
 
         private readonly ILockerFinder lockerFinder;
 
@@ -19,8 +19,7 @@ namespace Lotus.Model
 
         public Ticket Store(Bag bag)
         {
-            if(Lockers == null || Lockers.Length ==0)
-                throw new ZeroLockerException();
+            if(Lockers == null || Lockers.Length ==0) throw new ZeroLockerException();
             if (Lockers.All(locker => !locker.GetCanStore())) throw new LockerFullException();
             return lockerFinder.FindLocker(Lockers).Store(bag);
         }

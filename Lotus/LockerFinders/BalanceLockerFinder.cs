@@ -3,7 +3,7 @@ using Lotus.Model;
 
 namespace Lotus.LockerFinders
 {
-    public class BalanceLockerFinder : ILockerFinder
+    public class BalanceLockerFinder: ILockerFinder
     {
         public Locker FindLocker(Locker[] lockers)
         {

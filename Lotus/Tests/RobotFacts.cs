@@ -1,4 +1,5 @@
 using Lotus.Exceptions;
+using Lotus.LockerFinders;
 using Lotus.Model;
 using Xunit;
 
