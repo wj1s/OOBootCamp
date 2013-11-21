@@ -9,7 +9,6 @@ namespace Lotus.Model
         protected readonly Locker[] Lockers;
         private readonly ILockerFinder lockerFinder;
 
-        private readonly ILockerFinder lockerFinder;
 
         private Robot(Locker[] lockers, ILockerFinder lockerFinder)
         {
@@ -31,7 +30,7 @@ namespace Lotus.Model
 
         public static Robot CreateFifoRobot(Locker[] lockers)
         {
-            return new Robot(lockers, new FifoLockerFinder());
+            return new Robot(lockers, new FIFOLockerFinder());
         }
 
         public static Robot CreateBalanceRobot(Locker[] lockers)
