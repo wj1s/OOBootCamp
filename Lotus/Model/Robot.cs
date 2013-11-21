@@ -1,5 +1,6 @@
 using System.Linq;
 using Lotus.Exceptions;
+using Lotus.LockerFinders;
 
 namespace Lotus.Model
 {
@@ -7,9 +8,12 @@ namespace Lotus.Model
     {
         protected readonly Locker[] Lockers;
 
-        public Robot(Locker[] lockers)
+        private readonly ILockerFinder lockerFinder;
+
+        private Robot(Locker[] lockers, ILockerFinder lockerFinder)
         {
             Lockers = lockers;
+            this.lockerFinder = lockerFinder;
         }
 
         public Ticket Store(Bag bag)
@@ -17,13 +21,27 @@ namespace Lotus.Model
             if(Lockers == null || Lockers.Length ==0)
                 throw new ZeroLockerException();
             if (Lockers.All(locker => !locker.GetCanStore())) throw new LockerFullException();
-            
-            return Lockers.First(locker => locker.GetCanStore()).Store(bag);
+            return lockerFinder.FindLocker(Lockers).Store(bag);
         }
 
         public Bag Pick(Ticket ticket)
         {
             return Lockers.Select(locker => locker.Pick(ticket)).FirstOrDefault(bag => bag != null);
+        }
+
+        public static Robot CreateFifoRobot(Locker[] lockers)
+        {
+            return new Robot(lockers, new FifoLockerFinder());
+        }
+
+        public static Robot CreateBalanceRobot(Locker[] lockers)
+        {
+            return new Robot(lockers, new BalanceLockerFinder());
+        }
+
+        public static Robot CreateSmartRobot(Locker[] lockers)
+        {
+            return new Robot(lockers, new SmartLockerFinder());
         }
     }
 }

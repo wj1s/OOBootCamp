@@ -1,4 +1,5 @@
 using Lotus.Exceptions;
+using Lotus.LockerFinders;
 using Lotus.Model;
 using Xunit;
 
@@ -9,7 +10,7 @@ namespace Lotus.Tests
         [Fact]
         public void should_manage_lockers()
         {
-            var robot = new SmartRobot(new[] {new Locker(1), new Locker(1)});
+            var robot = Robot.CreateSmartRobot(new[] {new Locker(1), new Locker(1)});
             Assert.NotNull(robot);
         }
 
@@ -18,7 +19,7 @@ namespace Lotus.Tests
         {
             var locker = new Locker(1);
             var bag = new Bag();
-            Ticket ticket = new SmartRobot(new[] {locker}).Store(bag);
+            Ticket ticket = Robot.CreateSmartRobot(new[] {locker}).Store(bag);
             Assert.Same(bag, locker.Pick(ticket));
         }
 
@@ -26,7 +27,7 @@ namespace Lotus.Tests
         public void should_store_multi_bag_in_one_locker()
         {
             var locker = new Locker(2);
-            var robot = new SmartRobot(new[] {locker});
+            var robot = Robot.CreateSmartRobot(new[] {locker});
 
             var bag1 = new Bag();
             Ticket ticket1 = robot.Store(bag1);
@@ -42,7 +43,7 @@ namespace Lotus.Tests
         {
             var locker1 = new Locker(1);
             var locker2 = new Locker(1);
-            var robot = new SmartRobot(new[] {locker1, locker2});
+            var robot = Robot.CreateSmartRobot(new[] {locker1, locker2});
 
             var bag1 = new Bag();
             Ticket ticket1 = robot.Store(bag1);
@@ -58,7 +59,7 @@ namespace Lotus.Tests
         {
             var locker1 = new Locker(1);
             var locker2 = new Locker(1);
-            var robot = new SmartRobot(new[] {locker1, locker2});
+            var robot = Robot.CreateSmartRobot(new[] {locker1, locker2});
 
             robot.Store(new Bag());
             robot.Store(new Bag());
@@ -68,14 +69,14 @@ namespace Lotus.Tests
         [Fact]
         public void should_throw_exception_when_all_locker_full_when_no_cell()
         {
-            Assert.Throws<LockerFullException>(() => new SmartRobot(new[] { new Locker(0), new Locker(0) }).Store(new Bag()));
+            Assert.Throws<LockerFullException>(() => Robot.CreateSmartRobot(new[] {new Locker(0), new Locker(0)}).Store(new Bag()));
         }
 
         [Fact]
         public void should_throw_exception_when_robot_with_no_cell_when_store_bag()
         {
-            Assert.Throws<ZeroLockerException>(() => new SmartRobot(null).Store(new Bag()));
-            Assert.Throws<ZeroLockerException>(() => new SmartRobot(new Locker[0]).Store(new Bag()));
+            Assert.Throws<ZeroLockerException>(() => Robot.CreateSmartRobot(null).Store(new Bag()));
+            Assert.Throws<ZeroLockerException>(() => Robot.CreateSmartRobot(new Locker[0]).Store(new Bag()));
         }
 
         [Fact]
@@ -83,7 +84,7 @@ namespace Lotus.Tests
         {
             var locker1 = new Locker(1);
             var locker2 = new Locker(1);
-            var robot = new SmartRobot(new[] {locker1, locker2});
+            var robot = Robot.CreateSmartRobot(new[] {locker1, locker2});
 
             var bag1 = new Bag();
             Ticket ticket1 = robot.Store(bag1);
@@ -99,7 +100,7 @@ namespace Lotus.Tests
         {
             var locker1 = new Locker(1);
             var locker2 = new Locker(1);
-            var robot = new SmartRobot(new[] {locker1, locker2});
+            var robot = Robot.CreateSmartRobot(new[] {locker1, locker2});
 
             Ticket ticket = robot.Store(new Bag());
 
@@ -112,7 +113,7 @@ namespace Lotus.Tests
         {
             var locker1 = new Locker(1);
             var locker2 = new Locker(1);
-            var robot = new SmartRobot(new[] {locker1, locker2});
+            var robot = Robot.CreateSmartRobot(new[] {locker1, locker2});
 
             robot.Store(new Bag());
             robot.Store(new Bag());
@@ -124,7 +125,7 @@ namespace Lotus.Tests
         public void should_store_bag_smart()
         {
             var bigLocker = new Locker(2);
-            var smartRobot = new SmartRobot(new[] {new Locker(1), bigLocker});
+            var smartRobot = Robot.CreateSmartRobot(new[] {new Locker(1), bigLocker});
             var bag = new Bag();
             var ticket = smartRobot.Store(bag);
             Assert.Same(bag, bigLocker.Pick(ticket));
